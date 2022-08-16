@@ -1,3 +1,4 @@
+//go:build integration
 // +build integration
 
 /**
@@ -200,9 +201,9 @@ var _ = Describe("Resource Controller - Integration Tests", func() {
 			Expect(*result.ResourcePlanID).To(Equal(testPlanID1))
 			Expect(*result.State).To(Equal("active"))
 			Expect(*result.Locked).Should(BeFalse())
-			Expect(result.LastOperation["type"]).To(Equal("create"))
-			Expect(result.LastOperation["async"]).Should(BeFalse())
-			Expect(result.LastOperation["state"]).To(Equal("succeeded"))
+			Expect(result.LastOperation.Type).To(Equal("create"))
+			Expect(result.LastOperation.Async).Should(BeFalse())
+			Expect(result.LastOperation.State).To(Equal("succeeded"))
 
 			testInstanceCRN = *result.ID
 			testInstanceGUID = *result.GUID
@@ -233,9 +234,9 @@ var _ = Describe("Resource Controller - Integration Tests", func() {
 			Expect(*result.ResourcePlanID).To(Equal(testPlanID1))
 			Expect(*result.State).To(Equal("active"))
 			Expect(*result.Locked).Should(BeFalse())
-			Expect(result.LastOperation["type"]).To(Equal("create"))
-			Expect(result.LastOperation["async"]).Should(BeFalse())
-			Expect(result.LastOperation["state"]).To(Equal("succeeded"))
+			Expect(result.LastOperation.Type).To(Equal("create"))
+			Expect(result.LastOperation.Async).Should(BeFalse())
+			Expect(result.LastOperation.State).To(Equal("succeeded"))
 		})
 
 		It("02 - Update A Resource Instance", func() {
@@ -263,10 +264,10 @@ var _ = Describe("Resource Controller - Integration Tests", func() {
 			Expect(*result.ID).To(Equal(testInstanceCRN))
 			Expect(*result.Name).To(Equal(instanceNames["update"]))
 			Expect(*result.State).To(Equal("active"))
-			Expect(result.LastOperation["type"]).To(Equal("update"))
-			Expect(result.LastOperation["sub_type"]).To(Equal("config"))
-			Expect(result.LastOperation["async"]).Should(BeFalse())
-			Expect(result.LastOperation["state"]).To(Equal("succeeded"))
+			Expect(result.LastOperation.Type).To(Equal("update"))
+			Expect(result.LastOperation.SubType).To(Equal("config"))
+			Expect(result.LastOperation.Async).Should(BeFalse())
+			Expect(result.LastOperation.State).To(Equal("succeeded"))
 		})
 
 		Describe("List Resource Instances", func() {
@@ -335,10 +336,10 @@ var _ = Describe("Resource Controller - Integration Tests", func() {
 				Expect(*result.Resources[0].GUID).To(Equal(testInstanceGUID))
 				Expect(*result.Resources[0].Name).To(Equal(instanceNames["update"]))
 				Expect(*result.Resources[0].State).To(Equal("active"))
-				Expect(result.Resources[0].LastOperation["type"]).To(Equal("update"))
-				Expect(result.Resources[0].LastOperation["sub_type"]).To(Equal("config"))
-				Expect(result.Resources[0].LastOperation["async"]).Should(BeFalse())
-				Expect(result.Resources[0].LastOperation["state"]).To(Equal("succeeded"))
+				Expect(result.Resources[0].LastOperation.Type).To(Equal("update"))
+				Expect(result.Resources[0].LastOperation.SubType).To(Equal("config"))
+				Expect(result.Resources[0].LastOperation.Async).Should(BeFalse())
+				Expect(result.Resources[0].LastOperation.State).To(Equal("succeeded"))
 			})
 
 			It("05 - List Resource Instances With Name Filter", func() {
@@ -1356,9 +1357,9 @@ var _ = Describe("Resource Controller - Integration Tests", func() {
 
 			Expect(*result.ID).To(Equal(testInstanceCRN))
 			Expect(*result.Locked).To(BeTrue())
-			Expect(result.LastOperation["type"]).To(Equal("lock"))
-			Expect(result.LastOperation["async"]).Should(BeFalse())
-			Expect(result.LastOperation["state"]).To(Equal("succeeded"))
+			Expect(result.LastOperation.Type).To(Equal("lock"))
+			Expect(result.LastOperation.Async).Should(BeFalse())
+			Expect(result.LastOperation.State).To(Equal("succeeded"))
 		})
 
 		It("39 - Update A Locked Resource Instance - Fail", func() {
@@ -1414,9 +1415,9 @@ var _ = Describe("Resource Controller - Integration Tests", func() {
 
 			Expect(*result.ID).To(Equal(testInstanceCRN))
 			Expect(*result.Locked).To(BeFalse())
-			Expect(result.LastOperation["type"]).To(Equal("unlock"))
-			Expect(result.LastOperation["async"]).Should(BeFalse())
-			Expect(result.LastOperation["state"]).To(Equal("succeeded"))
+			Expect(result.LastOperation.Type).To(Equal("unlock"))
+			Expect(result.LastOperation.Async).Should(BeFalse())
+			Expect(result.LastOperation.State).To(Equal("succeeded"))
 		})
 	})
 
@@ -1459,9 +1460,9 @@ var _ = Describe("Resource Controller - Integration Tests", func() {
 
 			Expect(*result.ID).To(Equal(testInstanceCRN))
 			Expect(*result.State).To(Equal("removed"))
-			Expect(result.LastOperation["type"]).To(Equal("delete"))
-			Expect(result.LastOperation["async"]).Should(BeFalse())
-			Expect(result.LastOperation["state"]).To(Equal("succeeded"))
+			Expect(result.LastOperation.Type).To(Equal("delete"))
+			Expect(result.LastOperation.Async).Should(BeFalse())
+			Expect(result.LastOperation.State).To(Equal("succeeded"))
 		})
 	})
 
@@ -1497,9 +1498,9 @@ var _ = Describe("Resource Controller - Integration Tests", func() {
 			Expect(*result.ResourcePlanID).To(Equal(testPlanID2))
 			Expect(*result.State).To(Equal("active"))
 			Expect(*result.Locked).Should(BeFalse())
-			Expect(result.LastOperation["type"]).To(Equal("create"))
-			Expect(result.LastOperation["async"]).Should(BeFalse())
-			Expect(result.LastOperation["state"]).To(Equal("succeeded"))
+			Expect(result.LastOperation.Type).To(Equal("create"))
+			Expect(result.LastOperation.Async).Should(BeFalse())
+			Expect(result.LastOperation.State).To(Equal("succeeded"))
 
 			testReclaimInstanceCRN = *result.ID
 			testReclaimInstanceGUID = *result.GUID
